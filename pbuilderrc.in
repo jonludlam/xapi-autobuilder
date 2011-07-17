@@ -1,0 +1,14 @@
+# this is your configuration file for pbuilder.
+# the file in /usr/share/pbuilder/pbuilderrc is the default template.
+# /etc/pbuilderrc is the one meant for overwritting defaults in
+# the default template
+#
+# read pbuilderrc.5 document for notes on specific options.
+MIRRORSITE=http://ftp.uk.debian.org/debian/
+DISTRIBUTION=sid
+OTHERMIRROR="deb file://@PWD@/tmp-debs ./"
+BINDMOUNTS="@PWD@/tmp-debs"
+HOOKDIR="@PWD@/hooks"
+EXTRAPACKAGES="apt-utils"
+BUILDRESULT="@PWD@/tmp-debs"
+

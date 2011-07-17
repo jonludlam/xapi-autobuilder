@@ -1,0 +1,3 @@
+#!/bin/sh
+(cd @PWD@/tmp-debs; apt-ftparchive packages . > Packages)
+apt-get update
