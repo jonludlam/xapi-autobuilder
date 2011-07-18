@@ -32,5 +32,5 @@ git clone git://github.com/jonludlam/vhdd.git tmp-checkout/vhdd
 # Xen-sm
 hg clone http://xenbits.xen.org/XCP/xen-sm.hg tmp-checkout/xen-sm.hg
 ./mk_hg_archive.sh tmp-checkout/xen-sm.hg xen-sm 0.1 $TOP/pristine
-./build_deb.sh xen-sm 0.1 git://github.com/jonludlam/xen-sm.git
+./build_deb.sh xen-sm 0.1 git://github.com/jonludlam/xen-sm-debian.git
 

@@ -1,6 +1,6 @@
 
 
-all : hooks/deps.in pbuilderrc pristine pristine/xen_4.1.0.orig.tar.gz pristine/xen_4.1.0.orig-qemu.tar.gz
+all : hooks/D05deps pbuilderrc pristine pristine/xen_4.1.0.orig.tar.gz pristine/xen_4.1.0.orig-qemu.tar.gz /var/cache/pbuilder/base.tgz
 	./build.sh
 
 clean : 
