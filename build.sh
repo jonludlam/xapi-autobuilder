@@ -7,7 +7,7 @@ mkdir tmp-checkout
 
 # Build xen
 
-./build_deb.sh xen 4.1.0 git://github.com/jonludlam/xen-debian.git xen_4.1.0.orig-qemu.tar.gz
+./build_deb.sh xen 4.1.1 git://github.com/jonludlam/xen-debian.git xen_4.1.1.orig-qemu.tar.gz
 
 # Build userspace blktap
 git clone git://github.com/jonludlam/blktap.git tmp-checkout/blktap
