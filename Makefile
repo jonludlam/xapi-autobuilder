@@ -27,11 +27,11 @@ pristine :
 
 # Xen pristine stuff
 
-pristine/xen_4.1.0.orig.tar.gz : 
-	cp pristine-xen/xen_4.1.0.orig.tar.gz pristine
+pristine/xen_4.1.1.orig.tar.gz : 
+	cp pristine-xen/xen_4.1.1.orig.tar.gz pristine
 
-pristine/xen_4.1.0.orig-qemu.tar.gz :
-	cp pristine-xen/xen_4.1.0.orig-qemu.tar.gz pristine
+pristine/xen_4.1.1.orig-qemu.tar.gz :
+	cp pristine-xen/xen_4.1.1.orig-qemu.tar.gz pristine
 
 	
 
