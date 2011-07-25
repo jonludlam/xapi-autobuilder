@@ -7,7 +7,7 @@ clean :
 	./clean.sh
 
 /var/cache/pbuilder/base.tgz : pbuilderrc tmp-debs
-	sudo pbuilder --create --configfile pbuilderrc --debootstrap cdebootstrap	
+	sudo pbuilder --create --configfile pbuilderrc --debootstrap cdebootstrap --debootstrapopts "--keyring=/usr/share/keyrings/debian-archive-keyring.gpg"
 
 tmp-debs :
 	mkdir tmp-debs
