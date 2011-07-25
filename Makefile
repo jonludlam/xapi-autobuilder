@@ -38,8 +38,8 @@ pristine/xen_4.1.1.orig-qemu.tar.gz :
 
 PHONY: install
 install:
-	mkdir debian
-	mkdir debian/source
+	mkdir -p debian
+	mkdir -p debian/source
 	cp tmp-debs/*.dsc tmp-debs/*.tar.gz tmp-debs/*.changes debian/source
 	cp tmp-debs/*.deb debian
 	rm debian/xen-utils*.deb ### This is currently broken!
