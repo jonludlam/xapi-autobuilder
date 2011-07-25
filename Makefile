@@ -33,6 +33,15 @@ pristine/xen_4.1.1.orig.tar.gz :
 pristine/xen_4.1.1.orig-qemu.tar.gz :
 	cp pristine-xen/xen_4.1.1.orig-qemu.tar.gz pristine
 
-	
+
+# To upload:
+
+PHONY: install
+install:
+	mkdir debian
+	mkdir debian/source
+	cp tmp-debs/*.dsc tmp-debs/*.tar.gz tmp-debs/*.changes debian/source
+	cp tmp-debs/*.deb debian
+
 
 
