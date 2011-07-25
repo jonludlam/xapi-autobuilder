@@ -42,6 +42,7 @@ install:
 	mkdir debian/source
 	cp tmp-debs/*.dsc tmp-debs/*.tar.gz tmp-debs/*.changes debian/source
 	cp tmp-debs/*.deb debian
+	rm debian/xen-utils*.deb ### This is currently broken!
 
 
 
