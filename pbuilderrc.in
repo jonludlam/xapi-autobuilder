@@ -11,4 +11,4 @@ BINDMOUNTS="@PWD@/tmp-debs"
 HOOKDIR="@PWD@/hooks"
 EXTRAPACKAGES="apt-utils"
 BUILDRESULT="@PWD@/tmp-debs"
-
+BASETGZ="@PWD@/base.tgz"
