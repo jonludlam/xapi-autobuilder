@@ -34,3 +34,7 @@ hg clone http://xenbits.xen.org/XCP/xen-sm.hg tmp-checkout/xen-sm.hg
 ./mk_hg_archive.sh tmp-checkout/xen-sm.hg xen-sm 0.1 $TOP/pristine
 ./build_deb.sh xen-sm 0.1 git://github.com/jonludlam/xen-sm-debian.git
 
+# vncterm
+hg clone http://hg/carbon/trunk/vncterm.hg tmp-checkout/vncterm.hg
+./mk_hg_archive.sh tmp-checkout/vncterm.hg vncterm 0.1 $TOP/pristine
+./build_deb.sh vncterm 0.1 git://github.com/jonludlam/vncterm-debian.git
