@@ -50,3 +50,5 @@ xen-sm	Priority	optional
 xen-sm	Section	kernel
 xenstore-utils	Priority	optional
 xenstore-utils	Section	kernel
+blktap-dkms	Priority	optional
+blktap-dkms	Section kernel
