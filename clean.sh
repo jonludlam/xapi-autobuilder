@@ -7,3 +7,4 @@ touch tmp-debs/Packages
 rm -f pbuilderrc
 rm -f hooks/D05deps
 rm -f base.tgz
+rm -f repo/apt/debian/{db,dists,pool}

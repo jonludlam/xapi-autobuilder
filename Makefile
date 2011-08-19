@@ -3,6 +3,9 @@
 all : hooks/D05deps pbuilderrc pristine pristine/xen_4.1.1.orig.tar.gz pristine/xen_4.1.1.orig-qemu.tar.gz /var/cache/pbuilder/base.tgz
 	./build.sh
 
+repo : 
+	./mkrepo.sh
+
 clean : 
 	./clean.sh
 

@@ -1,0 +1,10 @@
+Origin: XCP
+Label: XCP
+Codename: unstable
+Architectures: i386
+Components: main
+Description: Apt repository for project XCP 
+DebOverride: override.unstable
+DscOverride: override.unstable
+SignWith: yes 
+
