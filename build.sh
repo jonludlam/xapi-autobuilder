@@ -11,9 +11,9 @@ mkdir tmp-checkout
 ./build_deb.sh -p xen -v 4.1.1 -g git://github.com/jonludlam/xen-debian.git -e xen_4.1.1.orig-qemu.tar.gz
 
 # Build userspace blktap
-git clone git://github.com/jonludlam/blktap.git tmp-checkout/blktap
-./mk_git_archive.sh tmp-checkout/blktap blktap master 1.0.0+${BUILDTIME} $TOP/pristine
-./build_deb.sh -p blktap -v 1.0.0+${BUILDTIME} -g git://github.com/jonludlam/blktap-debian.git
+git clone git://github.com/xen-org/blktap.git tmp-checkout/blktap
+./mk_git_archive.sh tmp-checkout/blktap blktap master 2.0.90+${BUILDTIME} $TOP/pristine
+./build_deb.sh -p blktap -v 2.0.90+${BUILDTIME} -g git://github.com/jonludlam/blktap-debian.git
 
 # Xen-api-libs
 git clone git://github.com/xen-org/xen-api-libs.git tmp-checkout/xen-api-libs
