@@ -14,15 +14,51 @@ the appropriate repositories and use pbuilder to build Debian packages.
 
 ## Requirements
 
-* Debian Sid/Experimental
+* Debian Sid/Experimental (only i386 is supported at the moment)
 * cdebootstrap
 * pbuilder
 
 ... and possibly more. Let us know if anything breaks due to missing
 requirements or dependencies!
 
+## Building and installing
+
+Using this repository is as simple as cloning and making:
+
+```
+git clone https://github.com/jonludlam/xapi-autobuilder.git
+cd xapi-autobuilder
+make clean ; make
+```
+
+This will build all of the required packages for Xapi on Debian (except for
+vncterm, which is only available as a binary until we sort out licensing
+issues). Take a look at xapi-autobuilder/build.sh to see what's going on
+inside, and modify that script to point to your own repositories if you plan on
+compiling your own code.
+
+Before installing the built Debian packages, you will
+need to install blktap-dkms from xen.org:
+
+```
+wget http://downloads.xen.org/XCP/debian/blktap-dkms_0.1_all.deb
+dpkg -i blktap-dkms_0.1_all.deb
+```
+
+Now you can install the finished packages:
+
+```
+cd tmp-debs
+# only install the amd64 xen hypervisor
+mv xen-hypervisor-4.1-i386_*_i386.deb xen-hypervisor-4.1-i386.deb_
+dpkg -i *.deb
+```
+
+Now reboot and select Xen from the grub menu!
+
 ## Further info
 
-Please see the wiki at http://wiki.xen.org and search for XCP for more info.
-Also, check out #xen-api on freenode and the xen-{api,users,devel} mailing
-lists.
+For more instructions on using Xapi on Debian, see the wiki page
+http://wiki.xen.org/xenwiki/XAPI_on_debian.  For more information on XCP,
+please see the wiki at http://wiki.xen.org and search for XCP. Also, check
+out #xen-api on freenode and the xen-{api,users,devel} mailing lists.
