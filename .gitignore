@@ -1,0 +1,7 @@
+base.tgz
+hooks/D05deps
+pbuilderrc
+pristine/
+tmp-build/
+tmp-checkout/
+tmp-debs/
