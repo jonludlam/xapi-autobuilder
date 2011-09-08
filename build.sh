@@ -3,39 +3,45 @@
 TOP=`pwd`
 BUILDTIME=`date +'%s'`
 STDVER=0.1+${BUILDTIME}
-mkdir tmp-build
-mkdir tmp-checkout
+mkdir -p tmp-build
+mkdir -p tmp-checkout
+
+max2 ()
+{
+  if [ "$1" -gt "$2" ]
+  then
+    echo $1
+  else
+    echo $2
+  fi
+}
+
+maxtimestamp ()
+{
+  t1=`./get_date.sh $1`
+  t2=`./get_date.sh $2`
+  t3=$(max2 $t1 $t2)
+  echo $t3 
+}
 
 # Build xen
 
-./build_deb.sh -p xen -v 4.1.1 -g git://github.com/jonludlam/xen-debian.git -e xen_4.1.1.orig-qemu.tar.gz
+./mk_simple_git_archive.sh tmp-checkout/xen-debian debian/ master xen-debian.tar.gz $TOP/pristine 
+./build_dsc.sh -p xen -v 4.1.1 -d $TOP/pristine/xen-debian.tar.gz -e xen_4.1.1.orig-qemu.tar.gz
+
+build_dsc ()
+{
+TIMESTAMP=$(maxtimestamp tmp-checkout/$1 tmp-checkout/$2)
+./mk_archive.sh tmp-checkout/$1 $1 HEAD ${3}+${TIMESTAMP} $TOP/pristine
+./mk_simple_git_archive.sh tmp-checkout/$2 debian/ HEAD $2.tar.gz $TOP/pristine
+./build_dsc.sh -p $1 -v ${3}+${TIMESTAMP} -d $TOP/pristine/$2.tar.gz
+}
 
 # Build userspace blktap
-git clone git://github.com/xen-org/blktap.git tmp-checkout/blktap
-./mk_git_archive.sh tmp-checkout/blktap blktap master 2.0.90+${BUILDTIME} $TOP/pristine
-./build_deb.sh -p blktap -v 2.0.90+${BUILDTIME} -g git://github.com/jonludlam/blktap-debian.git
+build_dsc blktap blktap-debian 2.0.90
+build_dsc xen-api-libs xen-api-libs-debian 0.1
+build_dsc xen-api xen-api-debian 0.1
+build_dsc vhdd vhdd-debian 0.1
+build_dsc xen-sm xen-sm-debian 0.1
+build_dsc vncterm vncterm-debian 0.1
 
-# Xen-api-libs
-git clone git://github.com/xen-org/xen-api-libs.git tmp-checkout/xen-api-libs
-./mk_git_archive.sh tmp-checkout/xen-api-libs xen-api-libs master ${STDVER} $TOP/pristine
-./build_deb.sh -p xen-api-libs -v ${STDVER} -g git://github.com/jonludlam/xen-api-libs-debian.git
-
-# Xen-api
-git clone git://github.com/xen-org/xen-api.git tmp-checkout/xen-api
-./mk_git_archive.sh tmp-checkout/xen-api xen-api master ${STDVER} $TOP/pristine
-./build_deb.sh -p xen-api -v ${STDVER} -g git://github.com/jonludlam/xen-api-debian.git
-
-# Vhdd
-git clone git://github.com/jonludlam/vhdd.git tmp-checkout/vhdd
-./mk_git_archive.sh tmp-checkout/vhdd vhdd master ${STDVER} $TOP/pristine
-./build_deb.sh -p vhdd -v ${STDVER} -g git://github.com/jonludlam/vhdd-debian.git 
-
-# Xen-sm
-hg clone http://xenbits.xen.org/XCP/xen-sm.hg tmp-checkout/xen-sm.hg
-./mk_hg_archive.sh tmp-checkout/xen-sm.hg xen-sm ${STDVER} $TOP/pristine
-./build_deb.sh -p xen-sm -v ${STDVER} -g git://github.com/jonludlam/xen-sm-debian.git
-
-# vncterm
-hg clone http://hg/carbon/trunk/vncterm.hg tmp-checkout/vncterm.hg
-./mk_hg_archive.sh tmp-checkout/vncterm.hg vncterm ${STDVER} $TOP/pristine
-./build_deb.sh -p vncterm -v ${STDVER} -g git://github.com/jonludlam/vncterm-debian.git 

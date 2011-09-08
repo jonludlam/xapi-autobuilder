@@ -1,7 +1,16 @@
+.PHONY: source binary default
+default: source
 
+tmp-checkout/.stampfile :
+	./checkout.sh
+	touch $@
 
-all : hooks/D05deps pbuilderrc pristine pristine/xen_4.1.1.orig.tar.gz pristine/xen_4.1.1.orig-qemu.tar.gz /var/cache/pbuilder/base.tgz
+source : hooks/D05deps pbuilderrc pristine pristine/xen_4.1.1.orig.tar.gz pristine/xen_4.1.1.orig-qemu.tar.gz base.tgz tmp-checkout/.stampfile
 	./build.sh
+	./make_makefile.sh	
+
+binary : 
+	make -C tmp-debs
 
 repo : 
 	./mkrepo.sh
@@ -9,12 +18,13 @@ repo :
 clean : 
 	./clean.sh
 
-/var/cache/pbuilder/base.tgz : pbuilderrc tmp-debs
+base.tgz : pbuilderrc tmp-debs/.stampfile
 	sudo pbuilder --create --configfile pbuilderrc --debootstrap cdebootstrap --debootstrapopts "--keyring=/usr/share/keyrings/debian-archive-keyring.gpg"
 
-tmp-debs :
+tmp-debs/.stampfile :
 	mkdir tmp-debs
 	touch tmp-deb/Packages
+	touch $@
 
 hooks/D05deps: hooks/deps.in
 	PWD=$(shell pwd)

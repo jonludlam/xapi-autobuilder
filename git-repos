@@ -1,0 +1,11 @@
+git://github.com/jonludlam/xen-debian.git
+git://github.com/xen-org/blktap.git
+git://github.com/jonludlam/blktap-debian.git
+git://github.com/xen-org/xen-api-libs.git
+git://github.com/jonludlam/xen-api-libs-debian.git
+git://github.com/xen-org/xen-api.git
+git://github.com/jonludlam/xen-api-debian.git
+git://github.com/jonludlam/vhdd.git
+git://github.com/jonludlam/vhdd-debian.git
+git://github.com/jonludlam/xen-sm-debian.git
+git://github.com/jonludlam/vncterm-debian.git
