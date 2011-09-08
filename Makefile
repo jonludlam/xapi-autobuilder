@@ -14,6 +14,10 @@ binary :
 
 fromcache :
 	make -C tmp-debs fromcache
+	touch tmp-debs/*.deb
+	apt-ftparchive packages tmp-debs > tmp-debs/Packages
+	sudo pbuilder --update --configfile pbuilderrc
+
 
 tocache :
 	make -C tmp-debs tocache
