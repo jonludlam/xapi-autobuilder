@@ -7,7 +7,7 @@
 MIRRORSITE=http://ftp.uk.debian.org/debian/
 DISTRIBUTION=sid
 OTHERMIRROR="deb file://@PWD@/tmp-debs ./"
-BINDMOUNTS="@PWD@/tmp-debs"
+BINDMOUNTS="@PWD@/tmp-debs @cache@"
 HOOKDIR="@PWD@/hooks"
 EXTRAPACKAGES="apt-utils"
 BUILDRESULT="@PWD@/tmp-debs"

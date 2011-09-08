@@ -13,5 +13,7 @@ if [ -e ${latest}/$1 ]; then
 	ln -s ${latest}/$1 .
 fi
 
-
+touch *.deb
+apt-ftparchive packages . > Packages
+sudo pbuilder --update --configfile pbuilderrc 
 

@@ -39,7 +39,7 @@ hooks/D05deps: hooks/deps.in
 
 pbuilderrc: pbuilderrc.in
 	PWD=$(shell pwd)
-	sed 's\@PWD@\$(PWD)\g' < pbuilderrc.in > pbuilderrc
+	sed 's\@PWD@\$(PWD)\g' < pbuilderrc.in | sed 's\@cache@\$(cache)\' > pbuilderrc
 
 pristine : 
 	mkdir -p pristine
