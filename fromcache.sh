@@ -15,5 +15,5 @@ fi
 
 touch *.deb
 apt-ftparchive packages . > Packages
-sudo pbuilder --update --configfile pbuilderrc 
+sudo pbuilder --update --configfile ../pbuilderrc 
 
