@@ -57,7 +57,7 @@ def gen_deps(spkg, deps):
 #        deps = filter(lambda depname: depname <> None, deps)
         deps_str = ' '.join(mydeps)
         print "%s: %s %s" % (debname,spkg['Dsc'],deps_str)
-        print "\t../build_deb.sh %s" % spkg['Dsc'] 
+        print "\trm -f %s\n\t../build_deb.sh %s" % (debname,spkg['Dsc'] )
 
 def gen_default_target(deps):
     pkg_names = get_all_pkg_names(deps)
@@ -67,18 +67,19 @@ def gen_default_target(deps):
             default = "%s %s" % (default, get_binary_deb_name_from_package(pkg))
 
     print ".PHONY: default\ndefault : %s\n" % default
+   
     print ".PHONY: fromcache\nfromcache : \n"
 
     for spkg in deps:
         for pkg in spkg['Binary']:
-            print "\t$(shell ../fromcache.sh %s ) \n" % get_binary_deb_name_from_package(pkg)
+            print "\t../fromcache.sh %s" % get_binary_deb_name_from_package(pkg)
 
     print ".PHONY: tocache\ntocache : \n"
 
     for spkg in deps:
         for pkg in spkg['Binary']:
-            print "\t$(shell ../tocache.sh %s )\n" % get_binary_deb_name_from_package(pkg)
-
+            print "\t../tocache.sh %s" % get_binary_deb_name_from_package(pkg)
+    print "\t../update_latest.sh\n"
 
 
 
