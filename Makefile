@@ -25,7 +25,9 @@ clean :
 	./clean.sh
 
 base.tgz : pbuilderrc tmp-debs/.stampfile
+	./get_base_tgz.sh
 	sudo pbuilder --create --configfile pbuilderrc --debootstrap cdebootstrap --debootstrapopts "--keyring=/usr/share/keyrings/debian-archive-keyring.gpg"
+	./stash_base_tgz.sh
 
 tmp-debs/.stampfile :
 	mkdir -p tmp-debs
@@ -59,7 +61,7 @@ PHONY: install
 install:
 	mkdir -p debian
 	mkdir -p debian/source
-	cp tmp-debs/*.dsc tmp-debs/*.tar.gz tmp-debs/*.changes debian/source
+	cp tmp-debs/*.dsc tmp-debs/*.tar.gz debian/source
 	cp tmp-debs/*.deb debian
 	rm debian/xen-utils*.deb ### This is currently broken!
 
