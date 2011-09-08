@@ -23,7 +23,7 @@ base.tgz : pbuilderrc tmp-debs/.stampfile
 
 tmp-debs/.stampfile :
 	mkdir -p tmp-debs
-	touch tmp-deb/Packages
+	touch tmp-debs/Packages
 	touch $@
 
 hooks/D05deps: hooks/deps.in
