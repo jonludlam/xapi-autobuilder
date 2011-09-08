@@ -28,7 +28,7 @@ base.tgz : pbuilderrc tmp-debs/.stampfile
 	sudo pbuilder --create --configfile pbuilderrc --debootstrap cdebootstrap --debootstrapopts "--keyring=/usr/share/keyrings/debian-archive-keyring.gpg"
 
 tmp-debs/.stampfile :
-	mkdir tmp-debs
+	mkdir -p tmp-debs
 	touch tmp-deb/Packages
 	touch $@
 
@@ -42,7 +42,7 @@ pbuilderrc: pbuilderrc.in
 	sed 's\@PWD@\$(PWD)\g' < pbuilderrc.in > pbuilderrc
 
 pristine : 
-	mkdir pristine
+	mkdir -p pristine
 
 # Xen pristine stuff
 
