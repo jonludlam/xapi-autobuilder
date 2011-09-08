@@ -26,7 +26,6 @@ clean :
 
 base.tgz : pbuilderrc tmp-debs/.stampfile
 	./get_base_tgz.sh
-	sudo pbuilder --create --configfile pbuilderrc --debootstrap cdebootstrap --debootstrapopts "--keyring=/usr/share/keyrings/debian-archive-keyring.gpg"
 	./stash_base_tgz.sh
 
 tmp-debs/.stampfile :
