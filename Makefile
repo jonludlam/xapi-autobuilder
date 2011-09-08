@@ -1,4 +1,4 @@
-.PHONY: source binary default
+.PHONY: source binary default fromcache tocache
 default: source
 
 tmp-checkout/.stampfile :
@@ -11,6 +11,12 @@ source : hooks/D05deps pbuilderrc pristine pristine/xen_4.1.1.orig.tar.gz pristi
 
 binary : 
 	make -C tmp-debs
+
+fromcache :
+	make -C tmp-debs fromcache
+
+tocache :
+	make -C tmp-debs tocache
 
 repo : 
 	./mkrepo.sh
