@@ -8,16 +8,15 @@ tmp-checkout/.stampfile :
 source : hooks/D05deps pbuilderrc pristine pristine/xen_4.1.1.orig.tar.gz pristine/xen_4.1.1.orig-qemu.tar.gz base.tgz tmp-checkout/.stampfile
 	./build.sh
 	./make_makefile.sh	
+	./fix_dsc_timestamps.sh
 
 binary : 
 	make -C tmp-debs
 
 fromcache :
 	make -C tmp-debs fromcache
-	touch tmp-debs/*.deb
 	apt-ftparchive packages tmp-debs > tmp-debs/Packages
 	sudo pbuilder --update --configfile pbuilderrc
-
 
 tocache :
 	make -C tmp-debs tocache

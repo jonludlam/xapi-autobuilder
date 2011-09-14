@@ -26,7 +26,7 @@ linkloc=`readlink $1`
 if [ $? = 0 ]; then
 	ln $linkloc ${thiscache}/$1 
 else
-	cp $1 ${thiscache}/$1
+	cp --preserve $1 ${thiscache}/$1
 fi
 
 

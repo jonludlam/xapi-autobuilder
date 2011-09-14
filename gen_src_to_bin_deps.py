@@ -3,6 +3,7 @@
 import sys
 from debian import deb822
 
+
 def find(f, seq):
   """Return first item in sequence where f(item) == True."""
   for item in seq:
@@ -62,7 +63,8 @@ def gen_deps(spkg, deps):
 #        deps = filter(lambda depname: depname <> None, deps)
         deps_str = ' '.join(mydeps)
         print "%s: %s %s" % (debname,spkg['Dsc'],deps_str)
-        print "\trm -f %s\n\t../build_deb.sh %s" % (all,spkg['Dsc'] )
+	print "\techo Building %s depends upon: %s" % (debname,deps_str)
+	print "\trm -f %s\n\t../build_deb.sh %s" % (all,spkg['Dsc'] )
 
 def gen_default_target(deps):
     pkg_names = get_all_pkg_names(deps)
@@ -85,8 +87,6 @@ def gen_default_target(deps):
         for pkg in spkg['Binary']:
             print "\t../tocache.sh %s" % get_binary_deb_name_from_package(pkg)
     print "\t../update_latest.sh\n"
-
-
 
 
 
