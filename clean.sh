@@ -1,7 +1,7 @@
 #!/bin/bash
 
 rm -rf pristine
-rm -rf tmp-build tmp-checkout
+rm -rf tmp-build
 rm -f tmp-debs/*
 touch tmp-debs/Packages
 rm -f pbuilderrc

@@ -1,4 +1,4 @@
-.PHONY: source binary default fromcache tocache
+.PHONY: source binary default fromcache tocache clean distclean
 default: source
 
 tmp-checkout/.stampfile :
@@ -26,6 +26,9 @@ repo :
 
 clean : 
 	./clean.sh
+
+distclean : clean
+	rm -rf tmp-checkout
 
 base.tgz : pbuilderrc tmp-debs/.stampfile
 	./get_base_tgz.sh
