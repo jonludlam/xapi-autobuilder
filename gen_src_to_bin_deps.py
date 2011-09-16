@@ -2,7 +2,7 @@
 
 import sys
 from debian import deb822
-
+import re
 
 def find(f, seq):
   """Return first item in sequence where f(item) == True."""
@@ -11,7 +11,9 @@ def find(f, seq):
       return item
 
 def gen_package(binstr, version, release,arch):
-	return map(lambda x: {'name':x.strip(), 'version':version, 'release':release, 'arch':arch}, binstr.split(','))
+	packages = map(lambda x: {'name':x.strip(), 'version':version, 'release':release, 'arch':arch}, binstr.split(','))
+	filtered = filter(lambda x: "doc" not in x['name'], packages)
+	return filtered
 
 def flatten(listOfLists):
     return reduce(list.__add__, listOfLists)
@@ -55,7 +57,7 @@ def gen_deps(spkg, deps):
     all = ""
     for pkg in spkg['Binary']:
 	debname=get_binary_deb_name_from_package(pkg)
-	all = "%s %s" % (all, debname)
+	all = "%s \"%s\"" % (all, debname)
 
     for pkg in spkg['Binary']:
         debname=get_binary_deb_name_from_package(pkg)
@@ -64,7 +66,9 @@ def gen_deps(spkg, deps):
         deps_str = ' '.join(mydeps)
         print "%s: %s %s" % (debname,spkg['Dsc'],deps_str)
 	print "\techo Building %s depends upon: %s" % (debname,deps_str)
+	print "\tls -la"
 	print "\trm -f %s\n\t../build_deb.sh %s" % (all,spkg['Dsc'] )
+	print "\tls -la"
 
 def gen_default_target(deps):
     pkg_names = get_all_pkg_names(deps)
@@ -79,13 +83,13 @@ def gen_default_target(deps):
 
     for spkg in deps:
         for pkg in spkg['Binary']:
-            print "\t../fromcache.sh %s" % get_binary_deb_name_from_package(pkg)
+            print "\t../fromcache.sh \"%s\"" % get_binary_deb_name_from_package(pkg)
 
     print ".PHONY: tocache\ntocache : \n"
 
     for spkg in deps:
         for pkg in spkg['Binary']:
-            print "\t../tocache.sh %s" % get_binary_deb_name_from_package(pkg)
+            print "\t../tocache.sh \"%s\"" % get_binary_deb_name_from_package(pkg)
     print "\t../update_latest.sh\n"
 
 
