@@ -37,6 +37,14 @@ TIMESTAMP=$(maxtimestamp tmp-checkout/$1 tmp-checkout/$2)
 ./build_dsc.sh -p $1 -v ${3}+${TIMESTAMP} -d $TOP/pristine/$2.tar.gz
 }
 
+build_gbp ()
+{
+pushd tmp-checkout/$1
+git-buildpackage -S
+mv ../*.dsc ../*.tar.gz $TOP/tmp-debs
+popd
+}
+
 # Build userspace blktap
 build_dsc blktap blktap-debian 2.0.90
 build_dsc xen-api-libs xen-api-libs-debian 0.1
@@ -44,4 +52,6 @@ build_dsc xen-api xen-api-debian 0.1
 build_dsc vhdd vhdd-debian 0.1
 build_dsc xen-sm xen-sm-debian 0.1
 build_dsc vncterm vncterm-debian 0.1
+
+build_gbp eliloader
 
