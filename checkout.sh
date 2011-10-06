@@ -4,10 +4,9 @@ mkdir -p tmp-checkout
 
 pushd tmp-checkout
 
-for i in `cat ../git-repos`
-do
-	git clone $i
-done
+while read line; do
+	git clone $line
+done < ../git-repos
 
 for i in `cat ../hg-repos`
 do
