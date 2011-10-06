@@ -4,6 +4,16 @@ import sys
 from debian import deb822
 import re
 
+arch_override = {
+ 'eliloader':'all'
+}
+
+def get_arch(name,default):
+  try:
+    return arch_override[name]
+  except:
+    return default
+
 def find(f, seq):
   """Return first item in sequence where f(item) == True."""
   for item in seq:
@@ -11,7 +21,7 @@ def find(f, seq):
       return item
 
 def gen_package(binstr, version, release,arch):
-	packages = map(lambda x: {'name':x.strip(), 'version':version, 'release':release, 'arch':arch}, binstr.split(','))
+	packages = map(lambda x: {'name':x.strip(), 'version':version, 'release':release, 'arch':get_arch(x.strip(), arch)}, binstr.split(','))
 	filtered = filter(lambda x: "doc" not in x['name'], packages)
 	return filtered
 
