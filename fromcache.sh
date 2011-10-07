@@ -11,7 +11,6 @@ latest=${cache}/latest
 
 if [ -e ${latest}/$1 ]; then
 	ln -s ${latest}/$1 .
-	touch -r ${latest}/$1 $1
 fi
 
 
