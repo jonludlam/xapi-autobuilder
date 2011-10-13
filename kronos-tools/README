@@ -8,6 +8,7 @@ To do:
   - Installs Debian Squeeze with necessary Unstable packages
   - Configures system as we would prefer it for Kronos
     - Partition layout
+    - Network configuration
     - What else?
   - Configures Kronos package repo and installs xapi, et al
 - Preseed file (as above) for Kronos/Ubuntu system
