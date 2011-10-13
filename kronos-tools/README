@@ -1,0 +1,15 @@
+Kronos Tools
+
+Goal: to provide a set of scripts to make installing Kronos easy.
+
+To do:
+
+- Preseed file to install a Kronos/Debian system
+  - Installs Debian Squeeze with necessary Unstable packages
+  - Configures system as we would prefer it for Kronos
+    - Partition layout
+    - What else?
+  - Configures Kronos package repo and installs xapi, et al
+- Preseed file (as above) for Kronos/Ubuntu system
+- Netboot Debian/Ubuntu images with preseeds packaged
+- Ubuntu Oneiric Kronos CD image, with preseed file packaged
