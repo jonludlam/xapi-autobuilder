@@ -14,9 +14,11 @@ the appropriate repositories and use pbuilder to build Debian packages.
 
 ## Requirements
 
-* Debian Sid/Experimental (only i386 is supported at the moment)
+* Debian Sid (only i386 is supported at the moment, but we're working on amd64)
 * cdebootstrap
 * pbuilder
+* dh-ocaml
+* dh-autoreconf
 
 ... and possibly more. Let us know if anything breaks due to missing
 requirements or dependencies!
