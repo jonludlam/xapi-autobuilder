@@ -2,8 +2,8 @@
 
 if [ -e ${cache}/base.tgz ]; then
 	cp ${cache}/base.tgz .
-	sudo pbuilder --update --configfile pbuilderrc
+	sudo -E pbuilder --update --configfile pbuilderrc2
 else
-        sudo pbuilder --create --configfile pbuilderrc --debootstrap cdebootstrap --debootstrapopts "--keyring=/usr/share/keyrings/debian-archive-keyring.gpg"
+        sudo -E pbuilder --create --configfile pbuilderrc2 --debootstrap cdebootstrap --debootstrapopts "--keyring=/usr/share/keyrings/debian-archive-keyring.gpg"
 fi
 

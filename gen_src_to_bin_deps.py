@@ -3,6 +3,11 @@
 import sys
 from debian import deb822
 import re
+import os
+
+arch="i386"
+if "ARCH" in os.environ.keys():
+	arch=os.environ['ARCH']
 
 arch_override = {
  'eliloader':'all'
@@ -23,6 +28,7 @@ def find(f, seq):
 def gen_package(binstr, version, release,arch):
 	packages = map(lambda x: {'name':x.strip(), 'version':version, 'release':release, 'arch':get_arch(x.strip(), arch)}, binstr.split(','))
 	filtered = filter(lambda x: "doc" not in x['name'], packages)
+	filtered = filter(lambda x: "xen-hypervisor-4.1-i386" not in x['name'], filtered)
 	return filtered
 
 def flatten(listOfLists):
@@ -41,7 +47,7 @@ def process_dsc(fname):
                 'Dsc':fname,
 		'Version':version,
 		'Release':release,
-		'Binary':gen_package(pkg['Binary'],version,release,"i386"),
+		'Binary':gen_package(pkg['Binary'],version,release,arch),
 		'Build-Depends':map(lambda x: x.strip(), pkg['Build-Depends'].split(','))}
 
 def get_binary_deb_name_from_package(pkg):

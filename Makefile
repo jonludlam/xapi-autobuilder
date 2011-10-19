@@ -1,5 +1,8 @@
 .PHONY: source binary default fromcache tocache clean distclean build
 
+TOP := $(shell pwd)
+export TOP
+
 default: build
 
 build: 
@@ -12,18 +15,18 @@ tmp-checkout/.stampfile :
 	./checkout.sh
 	touch $@
 
-source : hooks/D05deps pbuilderrc pristine pristine/xen_4.1.1.orig.tar.gz pristine/xen_4.1.1.orig-qemu.tar.gz base.tgz tmp-checkout/.stampfile
+source : hooks/D05deps pristine pristine/xen_4.1.1.orig.tar.gz pristine/xen_4.1.1.orig-qemu.tar.gz base.tgz tmp-checkout/.stampfile
 	./build.sh
 	./make_makefile.sh	
 	./fix_dsc_timestamps.sh
 
-binary : 
+binary :
 	make -C tmp-debs
 
 fromcache :
 	make -C tmp-debs fromcache
 	apt-ftparchive packages tmp-debs > tmp-debs/Packages
-	sudo pbuilder --update --configfile pbuilderrc
+	sudo -E pbuilder --update --configfile pbuilderrc2
 
 tocache :
 	make -C tmp-debs tocache
@@ -38,7 +41,7 @@ distclean : clean
 	rm -rf tmp-checkout
 	rm -rf base.tgz
 
-base.tgz : pbuilderrc tmp-debs/.stampfile
+base.tgz : tmp-debs/.stampfile
 	./get_base_tgz.sh
 	./stash_base_tgz.sh
 
@@ -51,10 +54,6 @@ hooks/D05deps: hooks/deps.in
 	PWD=$(shell pwd)
 	sed 's\@PWD@\$(PWD)\g' < hooks/deps.in > hooks/D05deps
 	chmod 755 hooks/D05deps
-
-pbuilderrc: pbuilderrc.in
-	PWD=$(shell pwd)
-	sed 's\@PWD@\$(PWD)\g' < pbuilderrc.in | sed 's\@cache@\$(cache)\' > pbuilderrc
 
 pristine : 
 	mkdir -p pristine

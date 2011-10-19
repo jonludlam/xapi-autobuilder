@@ -2,6 +2,7 @@
 set -e
 set -x
 
-sudo pbuilder --build --configfile ../pbuilderrc $1
+
+sudo -E pbuilder --build --configfile ../pbuilderrc2 $1
 
 
