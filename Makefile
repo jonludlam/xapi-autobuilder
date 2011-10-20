@@ -1,7 +1,13 @@
-.PHONY: source binary default fromcache tocache clean distclean build
+.PHONY: source binary default fromcache tocache clean distclean build base.tgz
 
 TOP := $(shell pwd)
 export TOP
+
+DIST ?= sid
+ARCH ?= i386
+
+export DIST
+export ARCH
 
 default: build
 
