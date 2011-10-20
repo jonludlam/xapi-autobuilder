@@ -49,7 +49,6 @@ distclean : clean
 
 base.tgz : tmp-debs/.stampfile
 	./get_base_tgz.sh
-	./stash_base_tgz.sh
 
 tmp-debs/.stampfile :
 	mkdir -p tmp-debs
