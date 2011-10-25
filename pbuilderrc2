@@ -63,6 +63,8 @@ BUILDPLACE="/var/cache/pbuilder/build/"
 BINDMOUNTS="$TOP/tmp-debs $CACHE"
 HOOKDIR="$TOP/hooks"
 DEBBUILDOPTS="-b"
+EXTRAPACKAGES="apt-utils"
+OTHERMIRROR="deb file://$TOP/tmp-debs ./"
 
 if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
     # Debian configuration
