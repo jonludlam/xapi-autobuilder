@@ -3,6 +3,6 @@ set -e
 set -x
 
 
-sudo -E pbuilder --build --configfile ../pbuilderrc2 $1
+sudo -E cowbuilder --build --configfile ../pbuilderrc2 $1
 
 
