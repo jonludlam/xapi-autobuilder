@@ -1,8 +1,8 @@
 git://github.com/jonludlam/xen-debian.git
 git://github.com/xen-org/blktap.git
 git://github.com/jonludlam/blktap-debian.git
-git://github.com/jonludlam/xen-api-libs.git -b debian
-git://github.com/jonludlam/xen-api.git -b kronos
+git://github.com/jonludlam/xen-api-libs.git debian
+git://github.com/jonludlam/xen-api.git kronos
 git://github.com/jonludlam/xen-api-debian.git 
 git://github.com/jonludlam/vhdd.git
 git://github.com/jonludlam/vhdd-debian.git
