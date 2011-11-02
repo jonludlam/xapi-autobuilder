@@ -11,7 +11,7 @@ DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
     "unstable" "testing" "stable")
 
 # List of Ubuntu suites. Update these when needed.
-UBUNTU_SUITES=("oneiric" "natty" "maverick" "lucid" "karmic" "jaunty" "hardy")
+UBUNTU_SUITES=("precise" "oneiric" "natty" "maverick" "lucid" "karmic" "jaunty" "hardy")
 
 # Mirrors to use. Update these to your preferred mirror.
 DEBIAN_MIRROR="ftp.uk.debian.org"
@@ -60,7 +60,7 @@ DISTRIBUTION="$DIST"
 BUILDRESULT="$TOP/tmp-debs/"
 APTCACHE="/var/cache/pbuilder/$NAME/aptcache/"
 BUILDPLACE="/var/cache/pbuilder/build/"
-BINDMOUNTS="$TOP/tmp-debs $CACHE"
+BINDMOUNTS="$TOP/tmp-debs $cache"
 HOOKDIR="$TOP/hooks"
 DEBBUILDOPTS="-b"
 EXTRAPACKAGES="apt-utils"

@@ -39,8 +39,8 @@ TIMESTAMP=$(maxtimestamp tmp-checkout/$1 tmp-checkout/$2)
 build_gbp ()
 {
 pushd tmp-checkout/$1
-git-buildpackage -S
-mv ../*.dsc ../*.tar.gz $TOP/tmp-debs
+git-buildpackage -S -uc -us --git-export-dir=../build-area
+mv ../build-area/* $TOP/tmp-debs
 popd
 }
 
