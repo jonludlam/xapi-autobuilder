@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 BUILDTIME=`date +'%s'`
 STDVER=0.1+${BUILDTIME}
 mkdir -p tmp-build
