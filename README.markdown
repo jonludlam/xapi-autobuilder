@@ -15,6 +15,7 @@ the appropriate repositories and use pbuilder to build Debian packages.
 ## Requirements
 
 * Debian Sid (only i386 is supported at the moment, but we're working on amd64)
+* debootstrap
 * cdebootstrap
 * pbuilder
 * dh-ocaml
