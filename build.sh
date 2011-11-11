@@ -54,6 +54,7 @@ build_dsc vhdd vhdd-debian 0.1
 build_dsc xen-sm xen-sm-debian 0.1
 build_gbp xcp-eliloader
 build_gbp blktap-dkms
+build_gbp xcp-guest-templates
 
 # Optional, since source isn't published yet
 build_dsc vncterm vncterm-debian 0.1 || true
