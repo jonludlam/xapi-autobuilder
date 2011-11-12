@@ -32,7 +32,8 @@ binary :
 fromcache :
 	make -C tmp-debs fromcache
 	apt-ftparchive packages tmp-debs > tmp-debs/Packages
-	sudo -E pbuilder --update --configfile pbuilderrc2
+	sudo -E cowbuilder --update --configfile pbuilderrc2
+
 
 tocache :
 	make -C tmp-debs tocache
