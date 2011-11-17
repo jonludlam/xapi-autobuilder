@@ -3,8 +3,7 @@ git://github.com/xen-org/blktap.git
 git://github.com/jonludlam/blktap-debian.git
 git://github.com/jonludlam/blktap-dkms.git debian
 git://github.com/jonludlam/xen-api-libs.git debian
-git://github.com/jonludlam/xen-api.git kronos
-git://github.com/jonludlam/xen-api-debian.git 
+git://github.com/mcclurmc/xen-api.git debian
 git://github.com/mcclurmc/vhdd.git debian
 git://github.com/jonludlam/xen-sm-debian.git
 git://github.com/mcclurmc/vncterm.git debian
