@@ -50,7 +50,7 @@ popd
 build_dsc blktap blktap-debian 2.0.90
 build_gbp xen-api-libs
 build_gbp xen-api
-build_gbp vhdd
+#build_gbp vhdd
 build_dsc xen-sm xen-sm-debian 0.1
 build_gbp xcp-eliloader
 build_gbp blktap-dkms
