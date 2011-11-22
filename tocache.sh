@@ -26,7 +26,7 @@ mkdir -p ${thiscache}
 isrsynced=`grep $1 rsynced || true`
 
 if [ ! "x$isrsynced" = "x" ]; then
-	ln $linkloc ${thiscache}/$1 
+	ln ${cache}/latest/$1 ${thiscache}/$1 
 else
 	cp --preserve $1 ${thiscache}/$1
 fi
