@@ -10,7 +10,8 @@ fi
 latest=${cache}/latest
 
 if [ -e ${latest}/$1 ]; then
-	ln -s ${latest}/$1 .
+	rsync -a ${latest}/$1 .
+	echo $1 >> rsynced
 fi
 
 

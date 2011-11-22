@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+set -e
 
 echo "To cache: attempting to cache $1"
 
@@ -9,7 +10,8 @@ if [ ! -e $1 ]; then
 fi
 
 if [ "x${cache}" = "x" ]; then
-        cache=`cat cachelocation`
+	echo "No cache set. Exiting"
+	exit 0
 fi
 
 if [ "x$BUILD_NUMBER" = 'x' ]; then
@@ -21,9 +23,9 @@ thiscache=${cache}/${BUILD_NUMBER}
 
 mkdir -p ${thiscache}
 
+isrsynced = `grep $1 rsynced > /dev/null || true`
 
-linkloc=`readlink $1`
-if [ $? = 0 ]; then
+if [ ! "x$isrsynced" = "x" ]; then
 	ln $linkloc ${thiscache}/$1 
 else
 	cp --preserve $1 ${thiscache}/$1
