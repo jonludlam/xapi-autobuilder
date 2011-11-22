@@ -23,7 +23,7 @@ thiscache=${cache}/${BUILD_NUMBER}
 
 mkdir -p ${thiscache}
 
-isrsynced=`grep $1 rsynced > /dev/null || true`
+isrsynced=`grep $1 rsynced || true`
 
 if [ ! "x$isrsynced" = "x" ]; then
 	ln $linkloc ${thiscache}/$1 
