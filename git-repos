@@ -1,4 +1,4 @@
-git://github.com/jonludlam/xen-debian.git
+git://github.com/jonludlam/xen.git debian
 git://github.com/jonludlam/blktap.git debian
 git://github.com/jonludlam/blktap-dkms.git debian
 git://github.com/jonludlam/xen-api-libs.git debian

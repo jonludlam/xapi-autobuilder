@@ -5,11 +5,6 @@ set -e
 mkdir -p tmp-build
 mkdir -p tmp-checkout
 
-# Build xen
-
-./mk_simple_git_archive.sh tmp-checkout/xen-debian debian/ master xen-debian.tar.gz $TOP/pristine 
-./build_dsc.sh -p xen -v 4.1.1 -d $TOP/pristine/xen-debian.tar.gz -e xen_4.1.1.orig-qemu.tar.gz
-
 build_gbp ()
 {
 pushd tmp-checkout/$1
@@ -18,7 +13,7 @@ mv ../build-area/* $TOP/tmp-debs
 popd
 }
 
-# Build userspace blktap
+build_gbp xen
 build_gbp blktap 
 build_gbp xen-api-libs
 build_gbp xen-api
