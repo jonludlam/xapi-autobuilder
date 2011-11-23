@@ -1,10 +1,9 @@
 git://github.com/jonludlam/xen-debian.git
-git://github.com/xen-org/blktap.git
-git://github.com/jonludlam/blktap-debian.git
+git://github.com/jonludlam/blktap.git debian
 git://github.com/jonludlam/blktap-dkms.git debian
 git://github.com/jonludlam/xen-api-libs.git debian
 git://github.com/jonludlam/xen-api.git debian
-git://github.com/jonludlam/xen-sm-debian.git
-git://github.com/mcclurmc/vncterm.git debian
-git://github.com/mcclurmc/xcp-eliloader.git debian
-git://github.com/mcclurmc/xcp-guest-templates.git debian
+git://github.com/jonludlam/xcp-storage-managers.git debian
+git://github.com/jonludlam/vncterm.git debian
+git://github.com/jonludlam/xcp-eliloader.git debian
+git://github.com/jonludlam/xcp-guest-templates.git debian
