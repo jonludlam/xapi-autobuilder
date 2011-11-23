@@ -10,7 +10,7 @@ if "ARCH" in os.environ.keys():
 	arch=os.environ['ARCH']
 
 arch_override = {
- 'eliloader':'all'
+ 'xcp-eliloader':'all'
 }
 
 def get_arch(name,default):
