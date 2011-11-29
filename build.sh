@@ -14,12 +14,16 @@ popd
 }
 
 build_gbp xen
-build_gbp blktap 
 build_gbp xen-api-libs
 build_gbp xen-api
 #build_gbp vhdd
 build_gbp xcp-storage-managers
 build_gbp xcp-eliloader
-build_gbp blktap-dkms
 build_gbp xcp-guest-templates
 build_gbp vncterm
+
+if [ $DIST != "sid" ]; then
+	build_gbp blktap
+	build_gbp blktap-dkms
+fi
+
