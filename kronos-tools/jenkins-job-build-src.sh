@@ -6,6 +6,8 @@ set -x
 PROJECT_NAME=$(dirname ${JOB_NAME})
 
 git checkout ${DIST}
+git pull origin ${DIST}
+
 DIR=`mktemp -d`
 
 git-buildpackage -S -uc -us --git-debian-branch=${DIST} --git-export-dir=${DIR}
