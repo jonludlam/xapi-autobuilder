@@ -1,4 +1,4 @@
-.PHONY: source binary default fromcache tocache clean distclean build base.tgz
+.PHONY: source binary default fromcache tocache clean distclean build base.tgz source-debs source-makefile
 
 TOP := $(shell pwd)
 export TOP
@@ -17,14 +17,20 @@ build:
 	$(MAKE) binary
 	$(MAKE) tocache
 
-tmp-checkout/.stampfile :
+tmp-checkout/.stampfile : git-repos
 	./checkout.sh
 	touch $@
 
-source : hooks/D05deps pristine pristine/xen_4.1.1.orig.tar.gz pristine/xen_4.1.1.orig-qemu.tar.gz base.tgz tmp-checkout/.stampfile
+source-debs : hooks/D05deps pristine pristine/xen_4.1.1.orig.tar.gz pristine/xen_4.1.1.orig-qemu.tar.gz base.tgz tmp-checkout/.stampfile
 	./build.sh
+
+source-makefile :
 	./make_makefile.sh	
 	./fix_dsc_timestamps.sh
+
+source : 
+	$(MAKE) source-debs
+	$(MAKE) source-makefile
 
 binary :
 	make -C tmp-debs
