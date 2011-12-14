@@ -10,12 +10,14 @@ git checkout master
 git fetch origin debian:debian
 
 # Does ubuntu branch exist? Check it out and exit.
-if [ `git branch | grep "ubuntu$"` ]; then
+if [ `git branch -a | grep "remotes/origin/ubuntu$"` ]; then
 	git checkout ubuntu
 	exit 0
 fi
 
-# Ubuntu branch doesn't exist. Create it from debian and bump changelog.
+# Ubuntu branch doesn't exist on remote. Delete any local ubuntu branch, create
+# it from debian branch, and bump changelog.
+git branch -D ubuntu || true
 git branch ubuntu debian
 git checkout ubuntu
 
