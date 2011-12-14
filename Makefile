@@ -24,7 +24,7 @@ tmp-checkout/.stampfile : git-repos
 source-debs : hooks/D05deps tmp-checkout/.stampfile
 	./build.sh
 
-source-makefile :
+source-makefile : 
 	./make_makefile.sh	
 	./fix_dsc_timestamps.sh
 
@@ -32,7 +32,7 @@ source :
 	$(MAKE) source-debs
 	$(MAKE) source-makefile
 
-binary :
+binary : hooks/D05deps
 	cd tmp-debs
 	apt-ftparchive packages . > Packages
 	cd ..
