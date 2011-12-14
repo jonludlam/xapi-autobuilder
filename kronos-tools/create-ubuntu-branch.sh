@@ -21,3 +21,4 @@ git checkout ubuntu
 
 version=$(dpkg-parsechangelog -c1 -ldebian/changelog | grep Version | cut -f2 -d' ')
 dch -v ${version}ubuntu1 "Ubuntu stamp" --distribution "oneiric precise" --force-distribution
+git commit -a -m "Ubuntu stamp"
