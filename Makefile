@@ -1,4 +1,4 @@
-.PHONY: source binary default fromcache tocache clean distclean build base.tgz source-debs source-makefile
+.PHONY: source binary default fromcache tocache clean distclean build source-debs source-makefile
 
 TOP := $(shell pwd)
 export TOP
@@ -21,10 +21,10 @@ tmp-checkout/.stampfile : git-repos
 	./checkout.sh
 	touch $@
 
-source-debs : hooks/D05deps pristine pristine/xen_4.1.1.orig.tar.gz pristine/xen_4.1.1.orig-qemu.tar.gz base.tgz tmp-checkout/.stampfile
+source-debs : hooks/D05deps tmp-checkout/.stampfile
 	./build.sh
 
-source-makefile :
+source-makefile : 
 	./make_makefile.sh	
 	./fix_dsc_timestamps.sh
 
@@ -32,14 +32,18 @@ source :
 	$(MAKE) source-debs
 	$(MAKE) source-makefile
 
-binary :
+binary : hooks/D05deps
+	cd tmp-debs
+	apt-ftparchive packages . > Packages
+	cd ..
 	make -C tmp-debs
 
 fromcache :
 	make -C tmp-debs fromcache
-	apt-ftparchive packages tmp-debs > tmp-debs/Packages
-	sudo -E cowbuilder --update --configfile pbuilderrc2
-
+	cd tmp-debs
+	apt-ftparchive packages . > Packages
+	cd ..
+	./get_base_tgz.sh
 
 tocache :
 	make -C tmp-debs tocache
@@ -54,30 +58,10 @@ distclean : clean
 	rm -rf tmp-checkout
 	rm -rf base.tgz
 
-base.tgz : tmp-debs/.stampfile
-	./get_base_tgz.sh
-
-tmp-debs/.stampfile :
-	mkdir -p tmp-debs
-	touch tmp-debs/Packages
-	touch $@
-
 hooks/D05deps: hooks/deps.in
 	PWD=$(shell pwd)
 	sed 's\@PWD@\$(PWD)\g' < hooks/deps.in > hooks/D05deps
 	chmod 755 hooks/D05deps
-
-pristine : 
-	mkdir -p pristine
-
-# Xen pristine stuff
-
-pristine/xen_4.1.1.orig.tar.gz : 
-	cp pristine-xen/xen_4.1.1.orig.tar.gz pristine
-
-pristine/xen_4.1.1.orig-qemu.tar.gz :
-	cp pristine-xen/xen_4.1.1.orig-qemu.tar.gz pristine
-
 
 # To upload:
 

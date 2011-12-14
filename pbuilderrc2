@@ -55,16 +55,18 @@ if [ -n "${ARCH}" ]; then
 fi
 BASETGZ="/var/cache/pbuilder/$NAME-base.tgz"
 # Optionally, set BASEPATH (and not BASETGZ) if using cowbuilder
- BASEPATH="/var/cache/pbuilder/$NAME/base.cow/"
+BASEPATH="$TOP/$NAME/base.cow/"
 DISTRIBUTION="$DIST"
 BUILDRESULT="$TOP/tmp-debs/"
-APTCACHE="/var/cache/pbuilder/$NAME/aptcache/"
-BUILDPLACE="/var/cache/pbuilder/build/"
+APTCACHE="$TOP/$NAME/aptcache/"
+BUILDPLACE="$TOP/build/"
 BINDMOUNTS="$TOP/tmp-debs $cache"
 HOOKDIR="$TOP/hooks"
 DEBBUILDOPTS="-b"
 EXTRAPACKAGES="apt-utils"
 OTHERMIRROR="deb file://$TOP/tmp-debs ./"
+
+mkdir -p $BASEPATH $BUILDPLACE
 
 if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
     # Debian configuration
