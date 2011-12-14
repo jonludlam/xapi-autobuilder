@@ -33,12 +33,16 @@ source :
 	$(MAKE) source-makefile
 
 binary :
-	apt-ftparchive packages tmp-debs > tmp-debs/Packages
+	cd tmp-debs
+	apt-ftparchive packages . > Packages
+	cd ..
 	make -C tmp-debs
 
 fromcache :
 	make -C tmp-debs fromcache
-	apt-ftparchive packages tmp-debs > tmp-debs/Packages
+	cd tmp-debs
+	apt-ftparchive packages . > Packages
+	cd ..
 	./get_base_tgz.sh
 
 tocache :
