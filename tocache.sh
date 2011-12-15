@@ -23,9 +23,7 @@ thiscache=${cache}/${BUILD_NUMBER}
 
 mkdir -p ${thiscache}
 
-isrsynced=`grep $1 rsynced || true`
-
-if [ ! "x$isrsynced" = "x" ]; then
+if md5sum --check $1.md5 --status; then
 	ln ${cache}/latest/$1 ${thiscache}/$1 
 else
 	cp --preserve $1 ${thiscache}/$1

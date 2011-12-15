@@ -17,7 +17,7 @@ latest=${cache}/latest
 
 if [ -e ${latest}/$1 ]; then
 	rsync -a ${latest}/$1 .
-	echo $1 >> rsynced
+	md5sum $1 > $1.md5
 fi
 
 
