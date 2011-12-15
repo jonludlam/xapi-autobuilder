@@ -33,16 +33,12 @@ source :
 	$(MAKE) source-makefile
 
 binary : hooks/D05deps
-	cd tmp-debs
-	apt-ftparchive packages . > Packages
-	cd ..
+	./update_tmp_debs_packages.sh
 	make -C tmp-debs
 
 fromcache :
 	make -C tmp-debs fromcache
-	cd tmp-debs
-	apt-ftparchive packages . > Packages
-	cd ..
+	./update_tmp_debs_packages.sh
 	./get_base_tgz.sh
 
 tocache :
