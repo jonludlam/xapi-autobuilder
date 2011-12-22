@@ -2,6 +2,8 @@
 
 set -e
 
+PUSH_URL_BASE=git@github.com:jonludlam
+
 if ! [ -d tmp-checkout ]; then
 	echo "checkout repos first"
 	exit 1
@@ -27,7 +29,7 @@ while read line; do
 
 		dch -v ${newversion} "xapi-autobuilder automatic changelog bump" --distribution "unstable" --force-distribution
 		git commit -a -m "xapi-autobuilder: bump changelog"
-		git push origin ${branch}
+		git push ${PUSH_URL_BASE}/${dir}.git ${branch}
 
 		popd
 	fi
