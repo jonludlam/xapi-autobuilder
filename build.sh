@@ -5,6 +5,11 @@ set -e
 mkdir -p tmp-build
 mkdir -p tmp-checkout
 
+if [ ! -d $TOP/tmp-debs ];
+then
+   mkdir $TOP/tmp-debs
+fi
+
 build_gbp ()
 {
 pushd tmp-checkout/$1
