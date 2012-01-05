@@ -4,6 +4,7 @@ set -e
 
 mkdir -p tmp-build
 mkdir -p tmp-checkout
+mkdir -p tmp-debs
 
 build_gbp ()
 {
