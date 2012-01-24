@@ -9,6 +9,10 @@ if [ -e $TOP/$DIST-$ARCH/base.cow/etc/apt/sources.list ]; then
 else
         sudo mkdir -p /var/cache/pbuilder/$DIST-$ARCH/base.cow
         sudo -E cowbuilder --create --configfile pbuilderrc2
-	sudo -E cowbuilder --execute --configfile pbuilderrc2 --save-after-exec -- /usr/bin/apt-get install apt-utils || true
+	sudo -E cat <<EOF > /tmp/script.sh
+#!/bin/bash
+apt-get install -y apt-utils
+EOF
+	sudo -E cowbuilder --execute --configfile pbuilderrc2 --save-after-exec -- /tmp/script.sh
 fi
 
