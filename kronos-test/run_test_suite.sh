@@ -5,6 +5,9 @@
 PIF=`xe pif-list device=eth0 --minimal`
 xe pif-reconfigure-ip uuid=$PIF mode=dhcp
 
+sleep 10
+ifconfig eth0 0.0.0.0
+
 # Set up NFS SR
 
 SR=`xe sr-create type=nfs device-config:server=lork.uk.xensource.com device-config:serverpath=/mnt/vol0/nfs1/scratch1/kronos-test name-label=nfs`
