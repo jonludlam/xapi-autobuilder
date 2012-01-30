@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Bring up PIF correctly
+
+PIF=`xe pif-list device=eth0 --minimal`
+xe pif-reconfigure-ip uuid=$PIF mode=dhcp
 
 # Set up NFS SR
 
