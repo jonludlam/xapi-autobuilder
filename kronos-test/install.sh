@@ -39,9 +39,14 @@ echo "SSH is up"
 sshpass -p xenroot ssh root@$HOST -o StrictHostKeyChecking=no echo
 sshpass -p xenroot ssh-copy-id root@$HOST -o StrictHostKeyChecking=no
 
-scp ./run_test_suite.sh $HOST:
+
+scp ./fix_networking.sh ./run_test_suite.sh $HOST:
 sleep 30
 
-ssh $HOST bash ./run_test_suite.sh &> test.log
+ssh $HOST bash ./fix_networking.sh || true
+
+sleep 30
+
+ssh $HOST bash ./run_test_suite.sh 
 
 
