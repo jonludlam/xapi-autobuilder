@@ -43,7 +43,7 @@ sshpass -p xenroot ssh-copy-id root@$HOST -o StrictHostKeyChecking=no
 scp ./fix_networking.sh ./run_test_suite.sh $HOST:
 sleep 30
 
-ssh $HOST bash ./fix_networking.sh || true
+ssh $HOST nohup bash ./fix_networking.sh || true
 
 sleep 30
 
