@@ -40,13 +40,14 @@ sshpass -p xenroot ssh root@$HOST -o StrictHostKeyChecking=no echo
 sshpass -p xenroot ssh-copy-id root@$HOST -o StrictHostKeyChecking=no
 
 
-scp ./fix_networking.sh ./run_test_suite.sh $HOST:
+scp fix_networking.sh run_test_suite.sh $HOST:
 sleep 30
 
-ssh $HOST nohup bash ./fix_networking.sh || true
+ssh $HOST chmod 755 fix_networking.sh run_test_suite.sh
+ssh $HOST nohup ./fix_networking.sh || true
 
 sleep 30
 
-ssh $HOST bash ./run_test_suite.sh 
+ssh $HOST ./run_test_suite.sh 
 
 
