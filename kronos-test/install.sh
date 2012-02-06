@@ -44,7 +44,7 @@ scp fix_networking.sh run_test_suite.sh $HOST:
 sleep 30
 
 ssh $HOST chmod 755 fix_networking.sh run_test_suite.sh
-ssh $HOST "nohup ./fix_networking.sh &" || true
+ssh $HOST "nohup ./fix_networking.sh >/dev/null &" || true
 
 sleep 30
 
