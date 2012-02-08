@@ -17,6 +17,9 @@ wait_for_xapi() {
 }
 
 wait_for_xapi
+# The init script also waits for xapi, then runs pif-scan, so we need to wait for that to happen.
+
+sleep 10
 
 pif=`xe pif-list device=eth0 --minimal`
 echo "pif is: $pif"

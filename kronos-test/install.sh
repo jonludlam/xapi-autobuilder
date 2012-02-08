@@ -46,7 +46,7 @@ sleep 30
 ssh $HOST chmod 755 fix_networking.sh run_test_suite.sh
 ssh $HOST "nohup ./fix_networking.sh &>/root/fix_networking.log &" || true
 
-sleep 30
+sleep 60
 
 ssh $HOST ./run_test_suite.sh 
 
