@@ -37,14 +37,14 @@ echo "SSH is up"
 
 ./known_hosts_fix.sh $HOST
 sshpass -p xenroot ssh root@$HOST -o StrictHostKeyChecking=no echo
-sshpass -p xenroot ssh-copy-id root@$HOST -o StrictHostKeyChecking=no
+sshpass -p xenroot ssh-copy-id -i /root/.ssh/id_rsa.pub root@$HOST -o StrictHostKeyChecking=no
 
 
 scp fix_networking.sh run_test_suite.sh $HOST:
 sleep 30
 
 ssh $HOST chmod 755 fix_networking.sh run_test_suite.sh
-ssh $HOST "nohup ./fix_networking.sh >/dev/null &" || true
+ssh $HOST "nohup ./fix_networking.sh >/root/fix_networking.log &" || true
 
 sleep 30
 
